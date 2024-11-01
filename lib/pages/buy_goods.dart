@@ -132,7 +132,7 @@ class _SendMoneyPageState extends State<BuyGoodsPage> {
 
                       // Format the recipient number to include country code if necessary
                       if (recipient.startsWith('0')) {
-                        recipient = '254' + recipient.substring(1);
+                        recipient = '254${recipient.substring(1)}';
                       }
 
                       await startTransaction(
