@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pocket_banking/pages/dashboard.dart';
 
-// Defining the LoginPage class
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   late double deviceHeight, deviceWidth;
-  // Controllers for email and password fields
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  // Key to manage the form validation
   final _formKey = GlobalKey<FormState>();
-  final FirebaseAuth _auth = FirebaseAuth.instance; // Firebase Auth instance
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool _showSuccessMessage = false;
 
   @override
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         shadowColor: Colors.green,
-        title: Text('Login to PocketWallet',
-            style: TextStyle(color: Colors.white)), // AppBar title
-        backgroundColor: Colors.teal, // AppBar background color
+        title: const Text('Login to PocketWallet', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.teal,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -37,139 +37,125 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0), // Padding around the content
+          padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: _formKey, // Form key for validation
+            key: _formKey,
             child: Column(
-              mainAxisAlignment:
-                  MainAxisAlignment.center, // Center the content vertically
-              children: <Widget>[
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 SizedBox(
                   height: deviceHeight * 0.2,
                   width: deviceWidth * 0.2,
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     radius: 22,
                     backgroundColor: Colors.white,
-                      child: Image.asset('assets/images/logo.png')),
+                    child: Image(image: AssetImage('assets/images/logo.png')),
+                  ),
                 ),
-                Text(
+                const Text(
                   'Login',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium, // Uses the headline style from the app theme
+                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
-                    height: deviceHeight *
-                        0.03), // Space between title and email field
+                SizedBox(height: deviceHeight * 0.03),
 
                 // Email field
                 TextFormField(
-                  controller:
-                      emailController, // Connect the controller to the email input
-                  decoration: InputDecoration(
-                    labelText: 'Email', // Placeholder text
-                    border: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.black)), // Border style
-                    focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.black)), // Focused border
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(),
                   ),
-                  keyboardType:
-                      TextInputType.emailAddress, // Show email keyboard layout
+                  keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your email'; // Error if the field is empty
+                      return 'Please enter your email';
                     }
                     if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                      return 'Please enter a valid email'; // Error if the email format is invalid
+                      return 'Please enter a valid email';
                     }
-                    return null; // No error if the field is valid
+                    return null;
                   },
                 ),
-                SizedBox(
-                    height: deviceHeight *
-                        0.03), // Space between email and password fields
+                SizedBox(height: deviceHeight * 0.03),
 
                 // Password field
                 TextFormField(
-                  controller:
-                      passwordController, // Connect the controller to the password input
-                  obscureText: true, // Hides the input for passwords
-                  decoration: InputDecoration(
-                    labelText: 'Password', // Placeholder text
-                    border: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.black)), // Border style
-                    focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.black)), // Focused border
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Password',
+                    border: OutlineInputBorder(),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your password'; // Error if the field is empty
+                      return 'Please enter your password';
                     }
-                    return null; // No error if the field is valid
+                    return null;
                   },
                 ),
-                SizedBox(
-                    height:
-                        deviceHeight * 0.03), // Space before the login button
+                SizedBox(height: deviceHeight * 0.03),
 
-                // Login button
                 ElevatedButton(
                   onPressed: () async {
-                    // Validate the form before proceeding
                     if (_formKey.currentState!.validate()) {
                       try {
-                        // Sign in the user with Firebase
-                        UserCredential userCredential =
-                            await _auth.signInWithEmailAndPassword(
+                        UserCredential userCredential = await _auth.signInWithEmailAndPassword(
                           email: emailController.text.trim(),
                           password: passwordController.text.trim(),
                         );
-                        // If successful, navigate to the Dashboard
-                        Navigator.pushReplacementNamed(context, '/dashboard');
+                        setState(() {
+                          _showSuccessMessage = true;
+                        });
+
+                        Future.delayed(const Duration(seconds: 2), () {
+                          setState(() {
+                            _showSuccessMessage = false;
+                          });
+                          Navigator.pushReplacement(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation, secondaryAnimation) =>
+                                  const DashboardPage(),
+                              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                return FadeTransition(
+                                  opacity: animation,
+                                  child: child,
+                                );
+                              },
+                            ),
+                          );
+                        });
                       } on FirebaseAuthException catch (e) {
                         // Handle error during sign-in
                         String errorMessage;
                         if (e.code == 'user-not-found') {
                           errorMessage = 'No user found for that email.';
                         } else if (e.code == 'wrong-password') {
-                          errorMessage =
-                              'Wrong password provided for that user.';
+                          errorMessage = 'Wrong password provided for that user.';
                         } else {
                           errorMessage = 'An error occurred. Please try again.';
                         }
-                        // Show error message
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(errorMessage)));
+                          SnackBar(content: Text(errorMessage)),
+                        );
                       }
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pinkAccent, // Button background color
-                    foregroundColor: Colors.white, // Button text color
-                  ),
-                  child: Text('Login'), // Button text
+                  child: const Text('Login'),
                 ),
-                SizedBox(
-                    height:
-                        deviceHeight * 0.03), // Space before the register link
+                SizedBox(height: deviceHeight * 0.03),
 
-                // Register link
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 500),
+                  opacity: _showSuccessMessage ? 1.0 : 0.0,
+                  child: const Text('Login Successful!', style: TextStyle(color: Color.fromARGB(255, 250, 252, 250))),
+                ),
+
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(
-                        context, '/register'); // Navigate to Register page
-                  }, // Register link text
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.teal, // Text color
-                  ),
-                  child: Text(
-                    'Don\'t have an account? Register here',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                    Navigator.pushNamed(context, '/register');
+                  },
+                  child: const Text('Don\'t have an account? Register here', style: TextStyle(color: Color.fromARGB(255, 250, 252, 250))),
                 ),
               ],
             ),

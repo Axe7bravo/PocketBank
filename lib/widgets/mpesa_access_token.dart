@@ -23,15 +23,16 @@ String? formatPhoneNumber(String phoneNumber) {
 
 Future<String?> getMpesaAccessToken() async {
   // Your Consumer Key and Secret
-  String consumerKey = 'AcHZUG5W4IcLmtLHZ2w94biCZUGDftmVGM864x44Apw8oN8e';
+  String consumerKey = 'vtLq1joE5NUW1aQ5WsjIFAjU1LjqGy4Af1yEGV8R2HOjQdAI';
   String consumerSecret =
-      'mdXkQpGf1LXm8HOCBb5HhZyhdCYDFDQZ9yJ1QFRoA9CqyfyPfLeZprKAsAwi7hQK';
+      'm72Npyb3UD4GoqnER2tJbMTDAuWu5hgEhNPzyvkAgTgFaws2EArK2Nk284jHDqEi';
 
   // Encode consumerKey:consumerSecret to base64
   String credentials =
       base64Encode(utf8.encode('$consumerKey:$consumerSecret'));
 
   // URL for generating access token
+
   String url =
       'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
 
@@ -39,7 +40,7 @@ Future<String?> getMpesaAccessToken() async {
   var response = await http.get(
     Uri.parse(url),
     headers: {
-      'Authorization': 'Basic $credentials',
+      "Authorization": "Basic $credentials",
     },
   );
 
@@ -52,7 +53,7 @@ Future<String?> getMpesaAccessToken() async {
   }
 }
 
-Future<void> initiateMpesaSTKPush({
+Future<http.Response> initiateMpesaSTKPush({
   required String accessToken,
   required String recipient,
   required String amount,
@@ -60,9 +61,10 @@ Future<void> initiateMpesaSTKPush({
   String url =
       'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
   String shortCode = '174379'; // Replace with your actual shortcode
-  String passKey = 'bfb279f9aa9bdbcf158e97dd71a467cd'; // Sandbox Passkey
+  String passKey =
+      'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'; // Sandbox Passkey
   String timestamp = generateTimestamp(); // Get the current timestamp
-  String password = base64Encode(utf8.encode('$shortCode$passKey$timestamp'));
+  String password = base64Encode(utf8.encode("$shortCode$passKey$timestamp"));
 
   var body = {
     "BusinessShortCode": shortCode,
@@ -97,4 +99,6 @@ Future<void> initiateMpesaSTKPush({
   print('Access Token: $accessToken');
   print('Password: $password');
   print('Timestamp: $timestamp');
+
+  return response;
 }

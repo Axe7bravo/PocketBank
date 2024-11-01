@@ -26,6 +26,9 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
   // Favorite switch value
   bool isFavorite = false;
 
+  // Successful transactions
+  bool _showSuccessMessage = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,7 +142,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                 const SizedBox(height: 20.0),
 
                 // Send Money button
-                SendMoneyButton( // Replace the previous ElevatedButton
+                SendMoneyButton( // Replaced the previous ElevatedButton
                   text: 'Send Money',
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
@@ -151,17 +154,38 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                       String? accessToken = await getMpesaAccessToken();
 
                       if (accessToken != null) {
-                        // Initiate payment
-                        await initiateMpesaSTKPush(
-                          accessToken: accessToken,
-                          recipient: number,
-                          amount: amount,
-                        );
+                        try {
+                          // Initiate payment
+                          final response = await initiateMpesaSTKPush(
+                            accessToken: accessToken,
+                            recipient: number,
+                            amount: amount,
+                          );
 
-                        // Show success message
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Sending $amount to $recipient'),
-                        ));
+                          if (response.statusCode == 200) {
+                            // Payment successful, show success message
+                            setState(() {
+                              _showSuccessMessage = true;
+                            });
+
+                            Future.delayed(const Duration(seconds: 2), () {
+                              setState(() {
+                                _showSuccessMessage = false;
+                              });
+                            });
+                          } else {
+                            // Handle payment failure
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Payment failed. Please try again later.')),
+                            );
+                          }
+                        } catch (e) {
+                          // Handle general errors
+                          print('Error: $e');
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('An error occurred. Please try again later.')),
+                          );
+                        }
                       } else {
                         // Show error message
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -170,6 +194,13 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                       }
                     }
                   },
+                ),
+                const SizedBox(height: 20.0),
+
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 500),
+                  opacity: _showSuccessMessage ? 1.0 : 0.0,
+                  child: const Text('Transaction Successful!', style: TextStyle(color: Color.fromARGB(255, 250, 252, 250))),
                 ),
               ],
             ),
