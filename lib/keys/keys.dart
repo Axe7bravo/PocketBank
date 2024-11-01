@@ -1,2 +1,4 @@
-String kConsumerKey = "vtLq1joE5NUW1aQ5WsjIFAjU1LjqGy4Af1yEGV8R2HOjQdAI";
-String kConsumerSecret = "m72Npyb3UD4GoqnER2tJbMTDAuWu5hgEhNPzyvkAgTgFaws2EArK2Nk284jHDqEi";
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+  String kConsumerKey = dotenv.env['CONSUMER_KEY']!;
+  String kConsumerSecret = dotenv.env['CONSUMER_SECRET']!;

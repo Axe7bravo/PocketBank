@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 String generateTimestamp() {
   final now = DateTime.now();
@@ -23,9 +24,9 @@ String? formatPhoneNumber(String phoneNumber) {
 
 Future<String?> getMpesaAccessToken() async {
   // Your Consumer Key and Secret
-  String consumerKey = 'vtLq1joE5NUW1aQ5WsjIFAjU1LjqGy4Af1yEGV8R2HOjQdAI';
-  String consumerSecret =
-      'm72Npyb3UD4GoqnER2tJbMTDAuWu5hgEhNPzyvkAgTgFaws2EArK2Nk284jHDqEi';
+  String consumerKey = dotenv.env['CONSUMER_KEY']!;
+  String consumerSecret = dotenv.env['CONSUMER_SECRET']!;
+
 
   // Encode consumerKey:consumerSecret to base64
   String credentials =
@@ -61,8 +62,7 @@ Future<http.Response> initiateMpesaSTKPush({
   String url =
       'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
   String shortCode = '174379'; // Replace with your actual shortcode
-  String passKey =
-      'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'; // Sandbox Passkey
+  String passKey = dotenv.env['PASS_KEY']!; // Sandbox Passkey
   String timestamp = generateTimestamp(); // Get the current timestamp
   String password = base64Encode(utf8.encode("$shortCode$passKey$timestamp"));
 
