@@ -54,7 +54,7 @@ class DashboardGrid extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: LinearGradient(
-                  colors: [Colors.teal.shade400, Colors.teal.shade700],
+                  colors: [Colors.blue.shade400, Colors.blueAccent.shade700],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -67,7 +67,7 @@ class DashboardGrid extends StatelessWidget {
               style: const TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.w600,
-                  color: Colors.teal),
+                  color: Colors.lightBlueAccent),
             ),
           ],
         ),

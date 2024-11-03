@@ -16,22 +16,25 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool _showSuccessMessage = false;
+  
+
 
   @override
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      appBar: AppBar(
+return Scaffold(
+      appBar: AppBar( 
+
         shadowColor: Colors.green,
         title: const Text('Login to PocketWallet', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color.fromARGB(255, 23, 125, 228),
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -41,20 +44,25 @@ class _LoginPageState extends State<LoginPage> {
           child: Form(
             key: _formKey,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center, 
+
               children: [
-                SizedBox(
-                  height: deviceHeight * 0.2,
-                  width: deviceWidth * 0.2,
-                  child: const CircleAvatar(
-                    radius: 22,
-                    backgroundColor: Colors.white,
-                    child: Image(image: AssetImage('assets/images/logo.png')),
+                // Centerthe circular image
+                Center(
+                  child: SizedBox(
+                    height: deviceHeight * 0.25,
+                    width: deviceHeight * 0.25, // Adjust width if needed
+                    child: ClipOval(
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        fit: BoxFit.cover, // Adjust fit as needed
+                      ),
+                    ),
                   ),
                 ),
                 const Text(
                   'Login',
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
                 SizedBox(height: deviceHeight * 0.03),
 
@@ -62,8 +70,11 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   controller: emailController,
                   decoration: const InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
+                    labelText:  'Email',
+                    labelStyle:  TextStyle(color: Colors.white),
+                    border: OutlineInputBorder(
+                       borderSide: BorderSide(color: Colors.white),
+                    ),
                   ),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
@@ -84,6 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                   decoration: const InputDecoration(
                     labelText: 'Password',
+                    labelStyle:  TextStyle(color: Colors.white),
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {

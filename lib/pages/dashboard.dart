@@ -39,16 +39,15 @@ class _DashboardPageState extends State<DashboardPage> {
         appBar: AppBar(
           title: const Text(
             'PocketWallet',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           centerTitle: true,
-          backgroundColor: Colors.teal.shade700,
+          backgroundColor: Colors.blue.shade700,
           elevation: 10,
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
+              child: ClipOval(
                 child: Image.asset(
                   'assets/images/logo.png',
                   height: 32,
@@ -62,7 +61,7 @@ class _DashboardPageState extends State<DashboardPage> {
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.green, Colors.teal],
+              colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -96,7 +95,7 @@ class _DashboardPageState extends State<DashboardPage> {
               currentIndex: _selectedIndex,
               onTap: _onItemTapped,
               selectedItemColor: Colors.pinkAccent,
-              unselectedItemColor: Colors.green,
+              unselectedItemColor: Colors.blue,
               selectedFontSize: 14,
               unselectedFontSize: 12,
               iconSize: 28,

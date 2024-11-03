@@ -58,7 +58,12 @@ class PocketBankingApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Pocket Banking',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.blue,
+        inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white),
+    ),
+  ),
       ),
       initialRoute: '/',
       routes: {
