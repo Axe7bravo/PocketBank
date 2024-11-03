@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 return Scaffold(
       appBar: AppBar( 
 
-        shadowColor: Colors.green,
+        shadowColor: Colors.blue,
         title: const Text('Login to PocketWallet', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color.fromARGB(255, 23, 125, 228),
       ),

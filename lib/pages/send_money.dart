@@ -33,13 +33,13 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Send Money'),
-        backgroundColor: Colors.teal,
+        title: const Text('Send Money', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.blueAccent,
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -56,6 +56,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   controller: recipientController,
                   decoration: const InputDecoration(
                     labelText: 'Recipient\'s Name',
+                    labelStyle:  TextStyle(color: Colors.white),
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {
@@ -72,8 +73,8 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   controller:
                       recipientNumber, // Connect the controller to the input field
                   decoration: const InputDecoration(
-                    labelText:
-                        'Recipient\'s Number', // Label displayed in the input field
+                    labelText: 'Recipient\'s Number',
+                    labelStyle:  TextStyle(color: Colors.white), // Label displayed in the input field
                     border:
                         OutlineInputBorder(), // Outline border style for the input field
                   ),
@@ -96,6 +97,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   controller: amountController,
                   decoration: const InputDecoration(
                     labelText: 'Amount',
+                    labelStyle:  TextStyle(color: Colors.white),
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.number,
@@ -118,12 +120,13 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   items: paymentMethods.map((method) => 
                     DropdownMenuItem<String>(
                       value: method,
-                      child: Text(method),
+                      child: Text(method, style: TextStyle(backgroundColor: Colors.blue, color: Colors.white),),
                     )
                   ).toList(),
                   onChanged: (value) => setState(() => selectedPaymentMethod = value!),
                   decoration: const InputDecoration(
                     labelText: 'Payment Method',
+                    labelStyle:  TextStyle(color: Colors.white),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -132,7 +135,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                 // Favorite switch
                 Row(
                   children: [
-                    Text('Favorite'),
+                    Text('Favorite', style: TextStyle(color: Colors.white)),
                     Switch(
                       value: isFavorite,
                       onChanged: (value) => setState(() => isFavorite = value),
@@ -176,20 +179,20 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                           } else {
                             // Handle payment failure
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Payment failed. Please try again later.')),
+                              const SnackBar(content: Text('Payment failed. Please try again later.', style: TextStyle(color: Colors.white))),
                             );
                           }
                         } catch (e) {
                           // Handle general errors
                           print('Error: $e');
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('An error occurred. Please try again later.')),
+                            const SnackBar(content: Text('An error occurred. Please try again later.',style: TextStyle(color: Colors.white))),
                           );
                         }
                       } else {
                         // Show error message
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Failed to get access token'),
+                          content: Text('Failed to get access token', style: TextStyle(color: Colors.white)),
                         ));
                       }
                     }

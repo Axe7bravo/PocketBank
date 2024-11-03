@@ -11,12 +11,12 @@ class AccountPage extends StatelessWidget {
       appBar: AppBar(
         // AppBar widget for the top bar
         title: const Text('Account Overview'), // Title displayed in the AppBar
-        backgroundColor: Colors.teal, // Background color of the AppBar
+        backgroundColor: Colors.blueAccent, // Background color of the AppBar
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors:  [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -35,19 +35,22 @@ class AccountPage extends StatelessWidget {
                 'Account Holder: Allan Allan', // Text displaying account holder's name
                 style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.bold), // Styling the text
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white), // Styling the text
               ),
               const SizedBox(height: 10), // Spacing between elements
               // Displaying account number
               const Text(
                 'Account Number: 1234567890', // Text displaying account number
-                style: TextStyle(fontSize: 16), // Styling the text
+                style: TextStyle(fontSize: 16,
+                color: Colors.white), // Styling the text
               ),
               const SizedBox(height: 10), // Spacing between elements
               // Displaying account balance
               const Text(
                 'Account Balance: \$5,000', // Text displaying account balance
-                style: TextStyle(fontSize: 16), // Styling the text
+                style: TextStyle(fontSize: 16, 
+                color: Colors.white), // Styling the text
               ),
               const SizedBox(height: 20), // Spacing between elements
               // Section title for account details
@@ -55,17 +58,20 @@ class AccountPage extends StatelessWidget {
                 'Account Details', // Section title text
                 style: TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.bold), // Styling the title
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white), // Styling the title
               ),
               // ListTile displaying email information
               const ListTile(
                 title:
-                    Text('Email: allan@example.com'), // Text displaying email
+                    Text('Email: allan@example.com', 
+                    style: TextStyle(color: Colors.white)), // Text displaying email
               ),
               // ListTile displaying phone information
               const ListTile(
                 title: Text(
-                    'Phone: +254 778 567-8901'), // Text displaying phone number
+                    'Phone: +254 778 567-8901',
+                    style: TextStyle(color: Colors.white)), // Text displaying phone number
               ),
               const SizedBox(height: 20), // Spacing between elements
               // Button for editing account settings

@@ -22,12 +22,12 @@ class _BuyAirtimePageState extends State<BuyAirtimePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Buy Airtime'), // Title displayed in the AppBar
-        backgroundColor: Colors.teal, // Background color of the AppBar
+        backgroundColor: Colors.blueAccent, // Background color of the AppBar
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -47,7 +47,8 @@ class _BuyAirtimePageState extends State<BuyAirtimePage> {
                       numberController, // Connect the controller to manage the phone number input
                   decoration: const InputDecoration(
                     labelText:
-                        'Phone Number', // Label for the phone number input field
+                        'Phone Number',
+                    labelStyle:  TextStyle(color: Colors.white), // Label for the phone number input field
                     border:
                         OutlineInputBorder(), // Outline border around the input field
                   ),
@@ -67,8 +68,8 @@ class _BuyAirtimePageState extends State<BuyAirtimePage> {
                   controller:
                       amountController, // Connect the controller to manage the airtime amount input
                   decoration: const InputDecoration(
-                    labelText:
-                        'Amount', // Label for the airtime amount input field
+                    labelText:'Amount',
+                    labelStyle:  TextStyle(color: Colors.white), // Label for the airtime amount input field
                     border:
                         OutlineInputBorder(), // Outline border around the input field
                   ),

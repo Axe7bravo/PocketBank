@@ -25,13 +25,14 @@ class _PayBillsPageState extends State<PayBillsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
-        title: const Text('Pay Bills'), // Title displayed in the AppBar
+        backgroundColor: Colors.blue,
+        title: const Text('Pay Bills', 
+        style: TextStyle(color: Colors.white)), // Title displayed in the AppBar
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -93,7 +94,8 @@ class _PayBillsPageState extends State<PayBillsPage> {
                 controller:
                     billNumberController, // Connects the controller to the input field
                 decoration: const InputDecoration(
-                  labelText: 'Bill Number', // Label shown in the input field
+                  labelText: 'Bill Number',
+                  labelStyle:  TextStyle(color: Colors.white), // Label shown in the input field
                   border:
                       OutlineInputBorder(), // Outline border for the input field
                 ),
@@ -105,7 +107,8 @@ class _PayBillsPageState extends State<PayBillsPage> {
                 controller:
                     accountNumberController, // Connects the controller to the input field
                 decoration: const InputDecoration(
-                  labelText: 'Account Number', // Label shown in the input field
+                  labelText: 'Account Number',
+                  labelStyle:  TextStyle(color: Colors.white), // Label shown in the input field
                   border:
                       OutlineInputBorder(), // Outline border for the input field
                 ),
@@ -119,7 +122,8 @@ class _PayBillsPageState extends State<PayBillsPage> {
                 keyboardType:
                     TextInputType.number, // Show numeric keyboard for input
                 decoration: const InputDecoration(
-                  labelText: 'Amount', // Label shown in the input field
+                  labelText: 'Amount',
+                  labelStyle:  TextStyle(color: Colors.white), // Label shown in the input field
                   border:
                       OutlineInputBorder(), // Outline border for the input field
                 ),

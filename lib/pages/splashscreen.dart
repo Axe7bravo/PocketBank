@@ -35,13 +35,13 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text('PocketBank')),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blue,
       ),
       backgroundColor: Colors.white,
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -52,9 +52,8 @@ class _SplashPageState extends State<SplashPage> {
             children: [
               SizedBox(
                 height: deviceHeight * 0.4,
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 72,
+                child: ClipOval(
+             
                   child: Image.asset('assets/images/logo.png'),
                 ),
               ),

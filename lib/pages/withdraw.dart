@@ -28,13 +28,13 @@ class _WithdrawPageState extends State<WithdrawPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Withdraw'), // Title displayed in the AppBar
-        backgroundColor: Colors.teal, // Background color of the AppBar
+        title: const Text('Withdraw', style: TextStyle(color: Colors.white)), // Title displayed in the AppBar
+        backgroundColor: Colors.blueAccent, // Background color of the AppBar
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -73,8 +73,8 @@ class _WithdrawPageState extends State<WithdrawPage> {
                 controller:
                     amountController, // Connects the controller to manage the amount input
                 decoration: const InputDecoration(
-                  labelText:
-                      'Withdrawal Amount', // Label for the amount input field
+                  labelText:'Withdrawal Amount',
+                  labelStyle:  TextStyle(color: Colors.white), // Label for the amount input field
                   border:
                       OutlineInputBorder(), // Outline border around the input field
                 ),
@@ -88,7 +88,8 @@ class _WithdrawPageState extends State<WithdrawPage> {
                 controller:
                     pinController, // Connects the controller to manage the PIN input
                 decoration: const InputDecoration(
-                  labelText: 'Enter PIN', // Label for the PIN input field
+                  labelText: 'Enter PIN',
+                  labelStyle:  TextStyle(color: Colors.white), // Label for the PIN input field
                   border:
                       OutlineInputBorder(), // Outline border around the input field
                 ),

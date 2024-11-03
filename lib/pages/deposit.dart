@@ -22,13 +22,13 @@ class _DepositPageState extends State<DepositPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Deposit'), // Title displayed in the AppBar
-        backgroundColor: Colors.teal, // Background color of the AppBar
+        title: const Text('Deposit', style: TextStyle(color: Colors.white)), // Title displayed in the AppBar
+        backgroundColor: Colors.blueAccent, // Background color of the AppBar
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -46,8 +46,8 @@ class _DepositPageState extends State<DepositPage> {
                   controller:
                       amountController, // Connect the controller to the input field
                   decoration: const InputDecoration(
-                    labelText:
-                        'Deposit Amount', // Label displayed in the input field
+                    labelText:'Deposit Amount',
+                    labelStyle:  TextStyle(color: Colors.white), // Label displayed in the input field
                     border:
                         OutlineInputBorder(), // Outline border style for the input field
                   ),
@@ -66,8 +66,8 @@ class _DepositPageState extends State<DepositPage> {
                 DropdownButtonFormField<String>(
                   value: depositMethod,
                   decoration: const InputDecoration(
-                    labelText:
-                        'Deposit Method', // Label displayed in the dropdown
+                    labelText:'Deposit Method',
+                    labelStyle:  TextStyle(color: Colors.white), // Label displayed in the dropdown
                     border:
                         OutlineInputBorder(), // Outline border style for the dropdown
                   ),

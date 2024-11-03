@@ -23,13 +23,13 @@ class _BankTransferPageState extends State<BankTransferPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bank Transfer'), // Title displayed in the AppBar
-        backgroundColor: Colors.teal, // Background color of the AppBar
+        title: const Text('Bank Transfer', style: TextStyle(color: Colors.white),), // Title displayed in the AppBar
+        backgroundColor: Colors.blueAccent, // Background color of the AppBar
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -48,8 +48,8 @@ class _BankTransferPageState extends State<BankTransferPage> {
                   controller:
                       recipientNameController, // Connects the controller to manage the recipient's name input
                   decoration: const InputDecoration(
-                    labelText:
-                        'Recipient\'s Name', // Label for the recipient's name input field
+                    labelText:'Recipient\'s Name',
+                    labelStyle:  TextStyle(color: Colors.white), // Label for the recipient's name input field
                     border:
                         OutlineInputBorder(), // Outline border around the input field
                   ),
@@ -67,8 +67,8 @@ class _BankTransferPageState extends State<BankTransferPage> {
                   controller:
                       accountNumberController, // Connects the controller to manage the account number input
                   decoration: const InputDecoration(
-                    labelText:
-                        'Recipient\'s Account Number', // Label for the account number input field
+                    labelText:'Recipient\'s Account Number',
+                    labelStyle:  TextStyle(color: Colors.white), // Label for the account number input field
                     border:
                         OutlineInputBorder(), // Outline border around the input field
                   ),
@@ -88,7 +88,8 @@ class _BankTransferPageState extends State<BankTransferPage> {
                   controller:
                       amountController, // Connects the controller to manage the transfer amount input
                   decoration: const InputDecoration(
-                    labelText: 'Amount', // Label for the amount input field
+                    labelText: 'Amount',
+                    labelStyle:  TextStyle(color: Colors.white), // Label for the amount input field
                     border:
                         OutlineInputBorder(), // Outline border around the input field
                   ),

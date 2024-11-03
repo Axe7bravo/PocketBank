@@ -26,12 +26,12 @@ class _RegisterPageState extends State<RegisterPage> {
       appBar: AppBar(
         title: Text('Register to PocketWallet',
             style: TextStyle(color: Colors.white)), // AppBar title
-        backgroundColor: Colors.teal, // AppBar background color
+        backgroundColor: Colors.blue, // AppBar background color
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -47,9 +47,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: deviceHeight * 0.2,
                   width: deviceWidth * 0.2,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 22,
+                  child: ClipOval(
+
                       child: Image.asset('assets/images/logo.png')),
                 ),
                 Text(
@@ -67,13 +66,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller:
                       emailController, // Connect the controller to the email input
                   decoration: InputDecoration(
-                    labelText: 'Email', // Placeholder text
+                    labelText: 'Email',
+                    labelStyle:  TextStyle(color: Colors.white), // Placeholder text
                     border: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Colors.black)), // Border style
+                            BorderSide(color: Colors.white)), // Border style
                     focusedBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Colors.black)), // Focused border
+                            BorderSide(color: Colors.white)), // Focused border
                   ),
                   keyboardType:
                       TextInputType.emailAddress, // Show email keyboard layout
@@ -97,13 +97,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       passwordController, // Connect the controller to the password input
                   obscureText: true, // Hides the input for passwords
                   decoration: InputDecoration(
-                    labelText: 'Password', // Placeholder text
+                    labelText: 'Password',
+                    labelStyle:  TextStyle(color: Colors.white), // Placeholder text
                     border: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Colors.black)), // Border style
+                            BorderSide(color: Colors.white)), // Border style
                     focusedBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Colors.black)), // Focused border
+                            BorderSide(color: Colors.white)), // Focused border
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {

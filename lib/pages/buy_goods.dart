@@ -55,13 +55,13 @@ class _SendMoneyPageState extends State<BuyGoodsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Buy Goods'), // Title displayed in the AppBar
-        backgroundColor: Colors.teal, // Background color of the AppBar
+        title: const Text('Buy Goods', style: TextStyle(color: Colors.white),), // Title displayed in the AppBar
+        backgroundColor: Colors.blueAccent, // Background color of the AppBar
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -80,12 +80,12 @@ class _SendMoneyPageState extends State<BuyGoodsPage> {
                       recipientController, // Connect the controller to the input field
                   decoration: const InputDecoration(
                     labelText:
-                        'Buyer\'s Number', // Label displayed in the input field
+                        'Buyer\'s Number',
+                    labelStyle:  TextStyle(color: Colors.white), // Label displayed in the input field
                     border:
                         OutlineInputBorder(), // Outline border style for the input field
                   ),
-                  keyboardType: TextInputType
-                      .phone, // Show numeric keyboard for phone number input
+                  keyboardType: TextInputType.phone, // Show numeric keyboard for phone number input
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter the recipient\'s number'; // Error if the field is empty
@@ -103,7 +103,8 @@ class _SendMoneyPageState extends State<BuyGoodsPage> {
                   controller:
                       amountController, // Connect the controller to the input field
                   decoration: const InputDecoration(
-                    labelText: 'Amount', // Label displayed in the input field
+                    labelText: 'Amount',
+                    labelStyle:  TextStyle(color: Colors.white), // Label displayed in the input field
                     border:
                         OutlineInputBorder(), // Outline border style for the input field
                   ),

@@ -24,12 +24,12 @@ class SavingsPage extends StatelessWidget {
             children: [
               Text(
                 'Total Savings:',
-                style: TextStyle(fontSize: 24, color: Colors.white70),
+                style: TextStyle(fontSize: 24, color: Colors.white),
               ),
               SizedBox(height: 10),
               Text(
                 '\$10,000.00', // Example savings amount
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white70 ),
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),
               ),
               // Additional savings information can go here
             ],

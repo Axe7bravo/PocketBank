@@ -13,13 +13,13 @@ class _MainDrawerWidgetState extends State<MainDrawerWidget> {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.green, Colors.teal],
+          colors: [Colors.lightBlue, Color.fromARGB(255, 50, 122, 245)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
       ),
       child: Drawer(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blue,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
